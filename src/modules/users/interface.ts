@@ -4,6 +4,4 @@ export interface IUser {
   surnames: string;
   mail: string;
   googleId: string;
-  createdAt: Date;
-  updatedAt: Date;
 }
