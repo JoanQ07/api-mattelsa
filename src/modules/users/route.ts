@@ -1,8 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import { controllerUser } from "./controller";
 import { Router } from "express";
 
 const router = Router();
 
-router.post("/register");
+router.get("/get-google-id", controllerUser.getUserGoogleId);
+router.post("/register", controllerUser.registerUser);
 
 export default router;
