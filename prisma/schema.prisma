@@ -23,7 +23,8 @@ model Product {
   name       String   @db.VarChar()
   size       Sizes[]
   price      Float    @db.DoublePrecision
-  descrip    String?   @db.VarChar()
+  descrip    String?  @db.VarChar()
+  image      String?  @db.VarChar()
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   categoryId Int
@@ -32,7 +33,7 @@ model Product {
 
 model Sizes {
   id        Int      @id @default(autoincrement())
-  size      String   @unique @db.VarChar()
+  size      String   @db.VarChar()
   stock     Int?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -41,9 +42,10 @@ model Sizes {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  names    String @db.VarChar()
-  surnames String @db.VarChar()
-  mail     String @db.VarChar()
-  googleId String @db.VarChar()
+  id       Int     @id @default(autoincrement())
+  names    String  @db.VarChar()
+  surnames String  @db.VarChar()
+  mail     String  @db.VarChar()
+  role     String? @db.VarChar()
+  googleId String  @db.VarChar()
 }
