@@ -11,4 +11,13 @@ const createCategory = async (data: Icategory) => {
   }
 };
 
-export const servicesCategory = { createCategory };
+const getAllCategories = async () => {
+  try {
+    const res = prisma.category.findMany();
+    return res;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const servicesCategory = { createCategory, getAllCategories };
