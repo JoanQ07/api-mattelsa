@@ -10,7 +10,10 @@ const app = express();
 // app.use("/", (req, res) => res.send("API 🟢"));
 app.use(express.json());
 app.use(cors());
-app.use("/static", express.static("public"));
+
+// ejm: http://localhost:3000/static/1-img-01.webp
+app.use("/static", express.static("public/images"));
+
 app.use(routes);
 console.clear();
 

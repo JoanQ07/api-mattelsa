@@ -9,4 +9,5 @@ export interface IProdcut {
   createdAt: string;
   updatedAt: string;
   categoryId: number;
+  classProduct: string;
 }

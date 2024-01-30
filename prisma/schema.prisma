@@ -19,16 +19,17 @@ model Category {
 }
 
 model Product {
-  id         Int      @id @default(autoincrement())
-  name       String   @db.VarChar()
-  size       Sizes[]
-  price      Float    @db.DoublePrecision
-  descrip    String?  @db.VarChar()
-  image      String?  @db.VarChar()
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  categoryId Int
-  category   Category @relation(fields: [categoryId], references: [id])
+  id           Int      @id @default(autoincrement())
+  name         String   @db.VarChar()
+  size         Sizes[]
+  price        Int
+  descrip      String?  @db.VarChar()
+  classProduct String   @db.VarChar()
+  image        String?  @db.VarChar()
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  categoryId   Int
+  category     Category @relation(fields: [categoryId], references: [id])
 }
 
 model Sizes {
