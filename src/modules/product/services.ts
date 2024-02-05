@@ -25,17 +25,20 @@ const createProduct = async (data: IProdcut) => {
 const filterByClass = async ({ query }: any) => {
   try {
     const where =
-      query.classProduct == "all"
+      query.classProduct == "none"
         ? {}
         : {
             classProduct: query.classProduct,
+            AND: { categoryId: query.categoryId },
           };
+
+    const orderBy = query.orderBy == "none" ? {} : { price: query.orderBy };
 
     const res = await prisma.product.findMany({
       where,
+      orderBy,
       take: 20,
     });
-    console.log("💠  res--> ", res)
 
     return res;
   } catch (error) {
