@@ -1,5 +1,4 @@
 import { PrismaClient, Prisma } from "@prisma/client";
-import { Response, Request } from "express";
 import { IProdcut } from "./interface";
 const prisma = new PrismaClient();
 
@@ -24,14 +23,7 @@ const createProduct = async (data: IProdcut) => {
 
 const filterByClass = async ({ query }: any) => {
   try {
-    const where =
-      query.classProduct == "none"
-        ? {}
-        : {
-            classProduct: query.classProduct,
-            AND: { categoryId: query.categoryId },
-          };
-
+    const where = query.classProduct == "none" ? {} : loadClasses(query.classProduct);
     const orderBy = query.orderBy == "none" ? {} : { price: query.orderBy };
 
     const res = await prisma.product.findMany({
@@ -44,6 +36,20 @@ const filterByClass = async ({ query }: any) => {
   } catch (error) {
     throw error;
   }
+};
+
+const loadClasses = (listClasses: Array<any>): object => {
+  const where: any = {
+    OR: [],
+  };
+
+  listClasses.forEach((item) => {
+    where.OR.push({
+      classProduct: item,
+    });
+  });
+
+  return where;
 };
 
 export const servicesProduct = { createProduct, filterByClass };
