@@ -27,6 +27,9 @@ const filterByClass = async ({ query }: any) => {
     const orderBy = query.orderBy == "none" ? {} : { price: query.orderBy };
 
     const res = await prisma.product.findMany({
+      include: {
+        size: true,
+      },
       where,
       orderBy,
       take: 20,
